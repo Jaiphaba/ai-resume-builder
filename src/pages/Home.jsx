@@ -31,7 +31,7 @@ export default function Home() {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative z-20 flex items-center justify-between px-8 md:px-16 py-6 border-b border-white/10 backdrop-blur-sm bg-[#0a0a0a]/50"
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-16 py-5 border-b border-white/10 backdrop-blur-xl bg-[#0a0a0a]/70 shadow-lg shadow-black/20"
       >
         {/* System Name with dynamic hover glow effects */}
         <motion.h1 
@@ -104,7 +104,7 @@ export default function Home() {
       </div>
 
       {/* 2. CENTERED HERO CONTENT LAYER */}
-      <section className="relative z-10 flex flex-col items-center justify-center text-center px-6 pt-16 md:pt-24">
+      <section className="relative z-10 flex flex-col items-center justify-center text-center px-6 pt-32 md:pt-40">
         
         {/* Pulsing Badge */}
         <motion.div 
