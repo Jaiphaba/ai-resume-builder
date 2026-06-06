@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { getAuth, signOut } from "firebase/auth";
+import { where } from "firebase/firestore";
 
 // Import Firebase dependencies and your project config
 // Make sure you have initialized firebase app instance exported somewhere (e.g., db)
@@ -10,7 +11,7 @@ import { collection, onSnapshot, query, orderBy, deleteDoc, doc } from "firebase
 
 export default function Dashboard() {
   const navigate = useNavigate();
-  const auth = getAuth();
+ import { auth } from "../firebase/firebase";
 
 const handleSignOut = async () => {
   try {
@@ -64,7 +65,15 @@ const handleSignOut = async () => {
     const docCollectionRef = collection(db, "documents");
    
     // Query sorted by layout revisions
-    const q = query(docCollectionRef, orderBy("updatedAt", "desc"));
+    const currentUser = auth.currentUser;
+
+if (!currentUser) return;
+
+const q = query(
+  docCollectionRef,
+  where("userId", "==", currentUser.uid),
+  orderBy("updatedAt", "desc")
+);
 
     // Set up a continuous real-time channel pipeline listener
     const unsubscribe = onSnapshot(q, (snapshot) => {
