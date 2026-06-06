@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { getAuth, signOut } from "firebase/auth";
 import { where } from "firebase/firestore";
+import { auth } from "../firebase/firebase";
 
 // Import Firebase dependencies and your project config
 // Make sure you have initialized firebase app instance exported somewhere (e.g., db)
@@ -11,7 +12,6 @@ import { collection, onSnapshot, query, orderBy, deleteDoc, doc } from "firebase
 
 export default function Dashboard() {
   const navigate = useNavigate();
- import { auth } from "../firebase/firebase";
 
 const handleSignOut = async () => {
   try {
